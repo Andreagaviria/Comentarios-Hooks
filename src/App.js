@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Comments from './Components/Comments';
+import AddComment from './Components/AddComment';
 
 function App() {
   const [comments, setComments] = useState([
@@ -35,11 +36,19 @@ useEffect(() => {
   .then(json => console.log('componentDidMount', json))
 }, [comments])
 
+
+const addBody = (body) => {
+console.log('lulo', body);
+const newComments = [...comments, {body}];
+setComments(newComments);
+}
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
+      <AddComment addBody={addBody}/>
       {comments.map((comments, index) =>{
         return <Comments 
         key={index} 
